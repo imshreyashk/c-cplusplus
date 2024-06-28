@@ -1,1 +1,67 @@
+#include <iostream>
+#include <limits> // for numeric_limits<streamsize>::max()
+
+using namespace std;
+
+int main() {
+    int accountNumber, pin, choice;
+    double balance = 1000.00; // Initial balance (replace with data persistence for real use)
+
+    cout << "\nWelcome to ATM Machine\n";
+
+    // Login loop
+    while (true) {
+        cout << "\nEnter Account Number: ";
+        cin >> accountNumber;
+
+        cout << "Enter PIN: ";
+        cin >> pin;
+
+        // Simulate account validation (replace with actual validation logic)
+        if (accountNumber == 1234 && pin == 5678) {
+            break;
+        } else {
+            cout << "Invalid Account Number or PIN. Please try again.\n";
+        }
+    }
+
+    // Transaction loop
+    while (true) {
+        cout << "\nATM Menu:\n";
+        cout << "1. Check Balance\n";
+        cout << "2. Withdraw Cash\n";
+        cout << "3. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                cout << "\nYour balance is: $" << balance << endl;
+                break;
+            case 2:
+                double amount;
+                cout << "\nEnter amount to withdraw: $";
+                cin >> amount;
+
+                // Validate withdrawal amount (ensure it's non-negative and doesn't exceed balance)
+                if (amount <= 0) {
+                    cout << "Invalid amount. Please enter a positive value.\n";
+                } else if (amount > balance) {
+                    cout << "Insufficient funds. You cannot withdraw more than $" << balance << endl;
+                } else {
+                    balance -= amount;
+                    cout << "\nWithdrawal successful. Please collect your cash.\n";
+                    cout << "Remaining balance: $" << balance << endl;
+                }
+                break;
+            case 3:
+                cout << "\nThank you for using ATM Machine.\n";
+                return 0;
+            default:
+                cout << "\nInvalid choice. Please try again.\n";
+        }
+    }
+
+    return 0;
+}
 
